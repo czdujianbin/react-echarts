@@ -11,7 +11,7 @@ https://github.com/ecomfe/echarts/blob/master/LICENSE.txt
 
 About version
 ------------------
-ECharts : 2.2.7-webpack
+ECharts : 2.2.7
 
 How to start
 ------------------

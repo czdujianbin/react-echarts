@@ -1,4 +1,4 @@
-const ZRender = {
+/*const ZRender = {
 
 	Color:require("./tool/color"),
 
@@ -6,4 +6,4 @@ const ZRender = {
 	Base:require("./shape/Base")
 }
 
-module.exports = ZRender;
+module.exports = ZRender;*/

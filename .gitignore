@@ -1,3 +1,6 @@
 node_modules
 /apidocs
 /dist
+/out
+/tmp
+/npm-debug.log

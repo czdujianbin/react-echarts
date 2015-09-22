@@ -1,9 +1,12 @@
 {
     "name": "react-echarts",
-    "description": "react-echarts is a version of ECharts using react.ECharts is a very good tools,we want to provide the react version helping develop and release project using React.
+    "description": "react-echarts is a version of ECharts using react.ECharts is a very good tools,we want to provide the react version helping develop and release project using React.",
     "version": "2.2.7",
     "url": "https://github.com/czdujianbin/react-echarts",
     "options": {
-        "outdir": "./apidocs"
+        "outdir": "./apidocs",
+        "paths": [
+            "./echarts/"
+        ]
     }
 }
