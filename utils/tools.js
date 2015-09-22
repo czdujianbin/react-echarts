@@ -1,3 +1,4 @@
+var $ = require('jQuery');
 
 var Tools = {
 
@@ -14,6 +15,10 @@ var Tools = {
      
         var uuid = s.join("");
         return uuid;
+    },
+
+    clone: function(o){
+        return $.extend(true, {}, o);
     },
 
     loadScript : function(url, callback) {

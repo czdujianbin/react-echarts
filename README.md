@@ -23,4 +23,4 @@ How to use the yuidoc to create documents
 ------------------
 1. read the documents of yuidoc at `http://yui.github.io/yuidoc/syntax/index.html`
 2. install yuidoc: npm install astwyg/yuidoc -g
-3. execute command in the root directory: in the root: yuidoc components -e '.js,.jsx'
+3. execute command in the root directory:  yuidoc

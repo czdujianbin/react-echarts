@@ -100,6 +100,18 @@ var data = [
     },
 ];
 
+
+var data2 = [
+    {
+        name : "测试1",
+        data : [190, 123, 1420, 130, 170, 620]
+    },
+    {
+        name : "测试2",
+        data : [190, 213, 240, 230, 70, 260]
+    },
+];
+
 var xAxisName = ['周一','周二','周三','周四','周五','周六'];
 
        
@@ -191,21 +203,72 @@ option = {
         }
     ]
 };
-     /*               
-<ECharts height="400px" width="800px" option={option}/>
-    <BasicLine title="曲线测试" subtitle="这是一个副标题测试" height="400px" width="800px" trigger="item"  data={data} xAxisName={xAxisName} smooth={true}/>
 
-    <StackedLine title="曲线测试" subtitle="这是一个副标题测试" height="400px" width="800px" trigger="item" theme="macarons" data={data} xAxisName={xAxisName} smooth={true}/>
-  */
+option = {
+    legend: {
+        data:['高度(km)与气温(°C)变化关系']
+    },
+    toolbox: {
+        show : true,
+        feature : {
+            mark : {show: true},
+            dataView : {show: true, readOnly: false},
+            magicType : {show: true, type: ['line', 'bar']},
+            restore : {show: true},
+            saveAsImage : {show: true}
+        }
+    },
+    calculable : true,
+    tooltip : {
+        trigger: 'axis',
+        formatter: "Temperature : <br/>{b}km : {c}°C"
+    },
+    xAxis : [
+        {
+            type : 'value',
+            axisLabel : {
+                formatter: '{value} °C'
+            }
+        }
+    ],
+    yAxis : [
+        {
+            type : 'category',
+            axisLine : {onZero: false},
+            axisLabel : {
+                formatter: '{value} km'
+            },
+            boundaryGap : false,
+            data : ['0', '10', '20', '30', '40', '50', '60', '70', '80']
+        }
+    ],
+    series : [
+        {
+            name:'高度(km)与气温(°C)变化关系',
+            type:'line',
+            smooth:true,
+            itemStyle: {
+                normal: {
+                    lineStyle: {
+                        shadowColor : 'rgba(0,0,0,0.4)'
+                    }
+                }
+            },
+            data:[15, -50, -56.5, -46.5, -22.1, -2.5, -27.7, -55.7, -76.5]
+        }
+    ]
+};
+                    
+
 
 React.render(
   <div style={{"overflow":"auto"}}>
   <ECharts height="400px" width="800px" option={option}/>
-    <BasicLine title="曲线测试" subtitle="这是一个副标题测试" height="400px" width="800px" trigger="item"  data={data} xAxisName={xAxisName} smooth={true}/>
+    <BasicLine title="曲线测试" subtitle="这是一个副标题测试" height="400px" width="800px" trigger="axis"  data={data} xAxisName={xAxisName} smooth={true} tooltipFormatter="Temperature : <br/>{b}km : {c}°C"/>
 
-<StackedLine title="曲线测试" subtitle="这是一个副标题测试" height="400px" width="800px" trigger="item" theme="macarons" data={data} xAxisName={xAxisName} smooth={true}/>
-<StackedLine title="曲线测试" subtitle="这是一个副标题测试" height="400px" width="800px" trigger="item" theme="macarons" data={data} xAxisName={xAxisName} smooth={true}/>
-<StackedLine title="曲线测试" subtitle="这是一个副标题测试" height="400px" width="800px" trigger="item" theme="macarons" data={data} xAxisName={xAxisName} smooth={true}/>
-<StackedLine title="曲线测试" subtitle="这是一个副标题测试" height="400px" width="800px" trigger="item" theme="macarons" data={data} xAxisName={xAxisName} smooth={true}/>
+<StackedLine title="曲线测试" subtitle="这是一个副标题测试" height="400px" width="500px" trigger="item"  theme="macarons" data={data2} xAxisName={xAxisName} smooth={true} />
+<StackedLine title="曲线测试" subtitle="这是一个副标题测试" height="400px" width="600px" theme="macarons" data={data} xAxisName={xAxisName} smooth={true}/>
+<StackedLine title="曲线测试" subtitle="这是一个副标题测试" height="400px" width="700px" trigger="item" theme="macarons" data={data2} xAxisName={xAxisName} smooth={true}/>
+<StackedLine title="曲线测试" subtitle="这是一个副标题测试" height="400px" width="800px" data={data} xAxisName={xAxisName} smooth={true}/>
   </div>
   , document.getElementById('content'));

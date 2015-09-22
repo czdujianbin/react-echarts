@@ -30,6 +30,7 @@ var React = require('react/addons');
 var ZRender = require('../../../vendors/zrender/index');
 var Options = require('../../options/options');
 var AbstractECharts = require("../AbstractECharts");
+var Tools = require('../../../utils/tools');
 
 
 /**
@@ -55,7 +56,7 @@ var AbstractECharts = require("../AbstractECharts");
  * @param {String} smooth 
  * smoothed line, value(true/false), while smooth is true, lineStyle.type can not be dashed.
  * @param {String} trigger 
- * Type of trigger. Defaults to 'item'.Valid values are: 'item' | 'axis'.
+ * Type of trigger. Defaults to 'axis'.Valid values are: 'item' | 'axis'.
  * @return {Object} return stacked line chart component
  * 
  */
@@ -73,7 +74,7 @@ var StackedLine = React.createClass({
         if(!option){//没有原生的option设置
 
             //获取默认设置
-            option = Options.LineOption;
+            option = Tools.clone(Options.LineOption);
 
             option.title.text = this.props.title;
             option.title.subtext = this.props.subtitle;
@@ -82,6 +83,10 @@ var StackedLine = React.createClass({
 
             if(this.props.trigger){
                 option.tooltip.trigger = this.props.trigger;
+            }
+
+            if(this.props.tooltipFormatter){
+                option.tooltip.formatter = this.props.tooltipFormatter;
             }
 
             //组织数据
