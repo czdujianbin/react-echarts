@@ -13,6 +13,7 @@ var ECharts = require('./echarts');
 
 var BasicLine = require('./components/line/BasicLine');
 var StackedLine = require('./components/line/StackedLine');
+var BasicArea = require('./components/line/BasicArea');
 
 
 
@@ -89,16 +90,6 @@ var option = {
 };
 
 
-var data = [
-    {
-        name : "测试1",
-        data : [90, 113, 140, 30, 70, 60]
-    },
-    {
-        name : "测试2",
-        data : [190, 213, 240, 230, 70, 260]
-    },
-];
 
 
 var data2 = [
@@ -261,14 +252,98 @@ option = {
                     
 
 
+option = {
+    title : {
+        text: '某楼盘销售情况',
+        subtext: '纯属虚构'
+    },
+    tooltip : {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['意向','预购','成交']
+    },
+    toolbox: {
+        show : true,
+        feature : {
+            mark : {show: true},
+            dataView : {show: true, readOnly: false},
+            magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+            restore : {show: true},
+            saveAsImage : {show: true}
+        }
+    },
+    calculable : true,
+    xAxis : [
+        {
+            type : 'category',
+            boundaryGap : false,
+            data : ['周一','周二','周三','周四','周五','周六','周日']
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value'
+        }
+    ],
+    series : [
+        {
+            name:'成交',
+            type:'line',
+            smooth:true,
+            itemStyle: {normal: {areaStyle: {type: 'default'}}},
+            data:[10, 12, 21, 54, 260, 830, 710]
+        },
+        {
+            name:'预购',
+            type:'line',
+            smooth:true,
+            itemStyle: {normal: {areaStyle: {type: 'default'}}},
+            data:[30, 182, 434, 791, 390, 30, 10]
+        },
+        {
+            name:'意向',
+            type:'line',
+            smooth:true,
+            itemStyle: {normal: {areaStyle: {type: 'default'}}},
+            data:[1320, 1132, 601, 234, 120, 90, 20]
+        }
+    ]
+};
+                    
+
+var data = [
+    {
+        name : "测试1",
+        data : [10, 12, 21, 54, 260, 830, 710]
+    },
+    {
+        name : "测试2",
+        data : [30, 182, 434, 791, 390, 30, 10]
+    },
+    {
+        name : "测试2",
+        data : [1320, 1132, 601, 234, 120, 90, 20]
+    },
+];
+
+var xAxisName2 = ['周一','周二','周三','周四','周五','周六','周日']
+
 React.render(
   <div style={{"overflow":"auto"}}>
+
   <ECharts height="400px" width="800px" option={option}/>
+
     <BasicLine title="曲线测试" subtitle="这是一个副标题测试" height="400px" width="800px" trigger="axis"  data={data} xAxisName={xAxisName} smooth={true} tooltipFormatter="Temperature : <br/>{b}km : {c}°C"/>
 
-<StackedLine title="曲线测试" subtitle="这是一个副标题测试" height="400px" width="500px" trigger="item"  theme="macarons" data={data2} xAxisName={xAxisName} smooth={true} />
-<StackedLine title="曲线测试" subtitle="这是一个副标题测试" height="400px" width="600px" theme="macarons" data={data} xAxisName={xAxisName} smooth={true}/>
-<StackedLine title="曲线测试" subtitle="这是一个副标题测试" height="400px" width="700px" trigger="item" theme="macarons" data={data2} xAxisName={xAxisName} smooth={true}/>
-<StackedLine title="曲线测试" subtitle="这是一个副标题测试" height="400px" width="800px" data={data} xAxisName={xAxisName} smooth={true}/>
+<StackedLine title="StackedLine" subtitle="这是一个副标题测试" height="400px" width="500px" trigger="axis"  theme="macarons" data={data2} xAxisName={xAxisName2} smooth={true} />
+
+
+<StackedLine title="StackedLine" subtitle="这是一个副标题测试" height="400px" width="600px" theme="macarons" data={data} xAxisName={xAxisName} smooth={true}/>
+
+
+<p>BasicArea</p>
+<BasicArea title="BasicArea" subtitle="BasicArea" height="400px" width="800px" data={data} xAxisName={xAxisName} smooth={true}/>
+
   </div>
   , document.getElementById('content'));

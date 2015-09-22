@@ -8,7 +8,7 @@ var Option = {
     },
     tooltip:{
         //触发类型，默认数据触发，可选为：'item' | 'axis'
-        trigger:'axis'
+        trigger:'item'
     },
     legend:{
         //这个属性，应该和series中的名字是一致的，这样会提供一个选项，可以选择对应的series
@@ -33,6 +33,7 @@ var Option = {
         {
             type:'category',
             //X轴坐标名称间隔
+            axisLine : {onZero: false},
             boundaryGap : false,
             //X轴坐标名称
             //data:['测试1','测试2']
@@ -41,7 +42,8 @@ var Option = {
     ],
     yAxis:[
         {
-            type:'value'
+            type:'value',
+            axisLine : {onZero: false}
         }
     ],
     series:[

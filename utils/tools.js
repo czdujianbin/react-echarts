@@ -17,8 +17,23 @@ var Tools = {
         return uuid;
     },
 
-    clone: function(o){
-        return $.extend(true, {}, o);
+    clone: function(obj){
+
+        if(typeof(obj) != 'object') return obj; 
+        if(obj == null) return obj; 
+
+        if(obj instanceof Array){
+            var newObj = []
+        }else{
+            var newObj = {}; 
+        }
+        
+
+        for(var i in obj){
+            newObj[i] = this.clone(obj[i]); 
+        } 
+
+        return newObj; 
     },
 
     loadScript : function(url, callback) {

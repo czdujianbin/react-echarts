@@ -56,7 +56,9 @@ var Tools = require('../../../utils/tools');
  * @param {String} smooth 
  * smoothed line, value(true/false), while smooth is true, lineStyle.type can not be dashed.
  * @param {String} trigger 
- * Type of trigger. Defaults to 'axis'.Valid values are: 'item' | 'axis'.
+ * Type of trigger. Defaults to 'item'.Valid values are: 'item' | 'axis'.
+ * @param {String} tooltipFormatter
+ * tooltip's formatter: {string} (Template).(Template: a (series name), b(category value), c (value) ) eg : tooltipFormatter="Temperature : <br/>{b}km : {c}°C"
  * @return {Object} return stacked line chart component
  * 
  */
@@ -90,7 +92,7 @@ var StackedLine = React.createClass({
             }
 
             //组织数据
-            option.series = this.props.data;
+            option.series = Tools.clone(this.props.data);
             option.xAxis[0].data = this.props.xAxisName;
 
 

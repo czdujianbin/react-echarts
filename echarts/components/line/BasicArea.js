@@ -1,6 +1,6 @@
 /**
- * BasicLine Chart ,using EChart
- * @module BasicLine
+ * BasicArea Chart ,using EChart
+ * @module BasicArea
  *
  * @example
 ```
@@ -18,10 +18,10 @@ var data = [
   var xAxisName = ['周一','周二','周三','周四','周五','周六','周日'];
   
   simple use:
-  <BasicLine id="chart1" data={data} xAxisName={xAxisName}/>
+  <BasicArea id="chart1" data={data} xAxisName={xAxisName}/>
  
   Advance use:
-  <BasicLine id="test" title="曲线测试" subtitle="这是一个副标题测试" height="800px" width="100%" trigger="item" theme="macarons" data={data} xAxisName={xAxisName} smooth={true}/>
+  <BasicArea id="test" title="曲线测试" subtitle="这是一个副标题测试" height="800px" width="100%" trigger="item" theme="macarons" data={data} xAxisName={xAxisName} smooth={true}/>
 ```
  */
 
@@ -35,7 +35,7 @@ var Tools = require('../../../utils/tools');
 
 /**
  * Basic Line Chart
- * @class BasicLine
+ * @class BasicArea
  * @constructor
  * @param {String} height 
  * chart's height
@@ -61,7 +61,7 @@ var Tools = require('../../../utils/tools');
  * tooltip's formatter: {string} (Template).(Template: a (series name), b(category value), c (value) ) eg : tooltipFormatter="Temperature : <br/>{b}km : {c}°C"
  * @return {Object} return basic line chart component
  */
-var BasicLine = React.createClass({
+var BasicArea = React.createClass({
     
     "mixins":[AbstractECharts],
 
@@ -96,6 +96,7 @@ var BasicLine = React.createClass({
             for(var i = 0; i < option.series.length; i++){
                 (option.series[i])["type"] = "line";
                 (option.series[i])["smooth"] = this.props.smooth;
+                (option.series[i])["itemStyle"] = {normal: {areaStyle: {type: 'default'}}},
                 option.legend.data.push(option.series[i].name);
             }
 
@@ -109,4 +110,4 @@ var BasicLine = React.createClass({
 
 });
 
-module.exports = BasicLine;
+module.exports = BasicArea;
