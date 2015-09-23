@@ -310,24 +310,40 @@ option = {
         }
     ]
 };
-                    
+
 
 var data = [
     {
         name : "测试1",
-        data : [10, 12, 21, 54, 260, 830, 710]
+        data : [10, 12, 21, 54, 260, 830, 710,10]
     },
     {
         name : "测试2",
         data : [30, 182, 434, 791, 390, 30, 10]
     },
     {
+        name : "测试3",
+        data : [1320, 1132, 601, 234, 120, 90, 20]
+    },
+];
+                    
+
+var data2 = [
+    {
+        name : "测试1",
+        data : [10, 12, 21, 54, 260, 830, 710,10, 12, 21, 54, 260, 830, 710,10, 12, 21, 54, 260, 830, 710,10, 12, 21, 54, 260, 830, 710,10, 12, 21, 54, 260, 830, 710]
+    },
+    {
         name : "测试2",
+        data : [30, 182, 434, 791, 390, 30, 10]
+    },
+    {
+        name : "测试3",
         data : [1320, 1132, 601, 234, 120, 90, 20]
     },
 ];
 
-var xAxisName2 = ['周一','周二','周三','周四','周五','周六','周日']
+var xAxisName2 = ['周一','周二','周三','周四','周五','周六','周日','周一','周二','周三','周四','周五','周六','周日','周一','周二','周三','周四','周五','周六','周日','周一','周二','周三','周四','周五','周六','周日','周一','周二','周三','周四','周五','周六','周日']
 
 React.render(
   <div style={{"overflow":"auto"}}>
@@ -343,7 +359,7 @@ React.render(
 
 
 <p>BasicArea</p>
-<BasicArea title="BasicArea" subtitle="BasicArea" height="400px" width="800px" data={data} xAxisName={xAxisName} smooth={true}/>
+<BasicArea title="BasicArea" subtitle="BasicArea" height="400px" width="800px" data={data2} xAxisName={xAxisName2} smooth={true}/>
 
   </div>
   , document.getElementById('content'));

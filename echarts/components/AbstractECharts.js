@@ -1,16 +1,12 @@
-
+/*
+ * Created by czdujianbin on 15-9-22.
+ */
 
 var React = require('react/addons');
 var Tools = require('../../utils/tools');
 
-/**
- * ECharts
- * @class ECharts
- * @constructor
- * @param {String} id component id
- * @param {String} height component's height
- * @param {String} width component's width
- * @param {Object} option the setting of this component
+/*
+ * Abstract ECharts
  */
 var AbstractECharts = {
 
@@ -32,13 +28,28 @@ var AbstractECharts = {
         myChart.setOption(option);
     },
 
+    setDataZoom: function(option){
+        //判断是否使用dataZoom
+        if(option.xAxis[0].data.length > this.props.maxPoints){
+
+            option.dataZoom = {
+                orient:"horizontal", //水平显示
+                show:true, //显示滚动条
+                start:Math.ceil((1 - this.props.maxPoints/option.xAxis[0].data.length) * 100)
+            }
+        }
+
+    },
+
+
+            
     getInitialState: function() {
         return {
             id:Tools.uuid(),
             chart:null
         };
     },
-
+    
     getDefaultProps: function() {
         return {
             theme:"defalut",
@@ -50,6 +61,8 @@ var AbstractECharts = {
             
             xAxisName:[],
             smooth:false,
+
+            maxPoints:20,
 
             data:[],
             cssClass:{

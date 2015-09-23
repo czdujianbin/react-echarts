@@ -1,7 +1,7 @@
 /**
  * StackedLine Chart ,using EChart
  * @module StackedLine
- *
+ * @author czdujianbin 2015-09-21 10:01:41
  * @example
  * ```
  * var data = [
@@ -59,6 +59,8 @@ var Tools = require('../../../utils/tools');
  * Type of trigger. Defaults to 'item'.Valid values are: 'item' | 'axis'.
  * @param {String} tooltipFormatter
  * tooltip's formatter: {string} (Template).(Template: a (series name), b(category value), c (value) ) eg : tooltipFormatter="Temperature : <br/>{b}km : {c}°C"
+ * @param {Integer} maxPoints
+ * configure how many points will be showed in a chart
  * @return {Object} return stacked line chart component
  * 
  */
@@ -95,7 +97,7 @@ var StackedLine = React.createClass({
             option.series = Tools.clone(this.props.data);
             option.xAxis[0].data = this.props.xAxisName;
 
-
+            var useDataZoom =  false;
             option.legend.data = [];
             for(var i = 0; i < option.series.length; i++){
                 (option.series[i])["type"] = "line";
@@ -104,6 +106,7 @@ var StackedLine = React.createClass({
                 option.legend.data.push(option.series[i].name);
             }
 
+            this.setDataZoom(option);
 
         }
 
