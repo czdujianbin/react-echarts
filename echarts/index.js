@@ -14,13 +14,17 @@ var ECharts = require('./echarts');
 var BasicLine = require('./components/line/BasicLine');
 var StackedLine = require('./components/line/StackedLine');
 var BasicArea = require('./components/line/BasicArea');
+var StackedArea = require('./components/line/StackedArea');
+var IrregularLine = require('./components/line/IrregularLine');
 
+var BasicColumn = require('./components/bar/BasicColumn');
+var StackedColumn = require('./components/bar/StackedColumn');
 
 
 var option = {
     title : {
-        text: '未来一周气温变化',
-        subtext: '纯属虚构'
+        text: 'EChart',
+        subtext: '原生Option使用'
     },
     tooltip : {
         trigger: 'axis'
@@ -105,211 +109,7 @@ var data2 = [
 
 var xAxisName = ['周一','周二','周三','周四','周五','周六'];
 
-       
-option = {
-    "title": {
-        "text": "曲线测试",
-        "subtext": "这是一个副标题测试"
-    },
-    "tooltip": {
-        "trigger": "item"
-    },
-    "legend": {
-        "data": [
-            "测试1",
-            "测试2"
-        ]
-    },
-    "toolbox": {
-        "show": true,
-        "feature": {
-            "mark": {
-                "show": true
-            },
-            "magicType": {
-                "show": true,
-                "type": [
-                    "line",
-                    "bar",
-                    "stack",
-                    "tiled"
-                ]
-            },
-            "restore": {
-                "show": true
-            },
-            "saveAsImage": {
-                "show": true
-            }
-        }
-    },
-    "calculable": false,
-    "xAxis": [
-        {
-            "type": "category",
-            "boundaryGap": false,
-            "data": [
-                "周一",
-                "周二",
-                "周三",
-                "周四",
-                "周五",
-                "周六"
-            ]
-        }
-    ],
-    "yAxis": [
-        {
-            "type": "value"
-        }
-    ],
-    "series": [
-        {
-            "name": "测试1",
-            "data": [
-                90,
-                113,
-                140,
-                30,
-                70,
-                60
-            ],
-            "type": "line",
-            "smooth": true,
-            "stack": "sum"
-        },
-        {
-            "name": "测试2",
-            "data": [
-                190,
-                213,
-                240,
-                230,
-                70,
-                260
-            ],
-            "type": "line",
-            "smooth": true,
-            "stack": "sum"
-        }
-    ]
-};
-
-option = {
-    legend: {
-        data:['高度(km)与气温(°C)变化关系']
-    },
-    toolbox: {
-        show : true,
-        feature : {
-            mark : {show: true},
-            dataView : {show: true, readOnly: false},
-            magicType : {show: true, type: ['line', 'bar']},
-            restore : {show: true},
-            saveAsImage : {show: true}
-        }
-    },
-    calculable : true,
-    tooltip : {
-        trigger: 'axis',
-        formatter: "Temperature : <br/>{b}km : {c}°C"
-    },
-    xAxis : [
-        {
-            type : 'value',
-            axisLabel : {
-                formatter: '{value} °C'
-            }
-        }
-    ],
-    yAxis : [
-        {
-            type : 'category',
-            axisLine : {onZero: false},
-            axisLabel : {
-                formatter: '{value} km'
-            },
-            boundaryGap : false,
-            data : ['0', '10', '20', '30', '40', '50', '60', '70', '80']
-        }
-    ],
-    series : [
-        {
-            name:'高度(km)与气温(°C)变化关系',
-            type:'line',
-            smooth:true,
-            itemStyle: {
-                normal: {
-                    lineStyle: {
-                        shadowColor : 'rgba(0,0,0,0.4)'
-                    }
-                }
-            },
-            data:[15, -50, -56.5, -46.5, -22.1, -2.5, -27.7, -55.7, -76.5]
-        }
-    ]
-};
-                    
-
-
-option = {
-    title : {
-        text: '某楼盘销售情况',
-        subtext: '纯属虚构'
-    },
-    tooltip : {
-        trigger: 'axis'
-    },
-    legend: {
-        data:['意向','预购','成交']
-    },
-    toolbox: {
-        show : true,
-        feature : {
-            mark : {show: true},
-            dataView : {show: true, readOnly: false},
-            magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
-            restore : {show: true},
-            saveAsImage : {show: true}
-        }
-    },
-    calculable : true,
-    xAxis : [
-        {
-            type : 'category',
-            boundaryGap : false,
-            data : ['周一','周二','周三','周四','周五','周六','周日']
-        }
-    ],
-    yAxis : [
-        {
-            type : 'value'
-        }
-    ],
-    series : [
-        {
-            name:'成交',
-            type:'line',
-            smooth:true,
-            itemStyle: {normal: {areaStyle: {type: 'default'}}},
-            data:[10, 12, 21, 54, 260, 830, 710]
-        },
-        {
-            name:'预购',
-            type:'line',
-            smooth:true,
-            itemStyle: {normal: {areaStyle: {type: 'default'}}},
-            data:[30, 182, 434, 791, 390, 30, 10]
-        },
-        {
-            name:'意向',
-            type:'line',
-            smooth:true,
-            itemStyle: {normal: {areaStyle: {type: 'default'}}},
-            data:[1320, 1132, 601, 234, 120, 90, 20]
-        }
-    ]
-};
+    
 
 
 var data = [
@@ -343,6 +143,24 @@ var data2 = [
     },
 ];
 
+
+var data3 = [
+        {
+            name:'数据1',
+            type:'line',
+            data:[
+                [1.5, 10], [5, 7], [8, 8], [12, 6], [11, 12], [16, 9], [14, 6], [17, 4], [19, 9]
+            ]
+        },
+        {
+            name:'数据2',
+            type:'line',
+            data:[
+                [1, 2], [2, 3], [4, 2], [7, 5], [11, 2], [18, 3]
+            ]
+        }
+    ]
+
 var xAxisName2 = ['周一','周二','周三','周四','周五','周六','周日','周一','周二','周三','周四','周五','周六','周日','周一','周二','周三','周四','周五','周六','周日','周一','周二','周三','周四','周五','周六','周日','周一','周二','周三','周四','周五','周六','周日']
 
 React.render(
@@ -350,16 +168,30 @@ React.render(
 
   <ECharts height="400px" width="800px" option={option}/>
 
-    <BasicLine title="曲线测试" subtitle="这是一个副标题测试" height="400px" width="800px" trigger="axis"  data={data} xAxisName={xAxisName} smooth={true} tooltipFormatter="Temperature : <br/>{b}km : {c}°C"/>
+   <BasicLine title="BasicLine" subtitle="advance use" height="400px" width="800px" trigger="item"  data={data} xAxisName={xAxisName} smooth={true} tooltipFormatter="Temperature : <br/>{b}km : {c}°C"/>
 
-<StackedLine title="StackedLine" subtitle="这是一个副标题测试" height="400px" width="500px" trigger="axis"  theme="macarons" data={data2} xAxisName={xAxisName2} smooth={true} />
+<StackedLine title="StackedLine" subtitle="advance use" height="400px" width="500px" trigger="axis"  theme="macarons" data={data2} xAxisName={xAxisName2}  />
 
 
-<StackedLine title="StackedLine" subtitle="这是一个副标题测试" height="400px" width="600px" theme="macarons" data={data} xAxisName={xAxisName} smooth={true}/>
+<StackedLine title="StackedLine" subtitle="advance use" height="400px" width="600px" theme="macarons" data={data} xAxisName={xAxisName} smooth={true}/>
 
 
 <p>BasicArea</p>
 <BasicArea title="BasicArea" subtitle="BasicArea" height="400px" width="800px" data={data2} xAxisName={xAxisName2} smooth={true}/>
+
+<p>StackedArea</p>
+<StackedArea title="StackedArea" subtitle="StackedArea" height="400px" width="800px" data={data2} xAxisName={xAxisName2} smooth={true}/>
+
+<p>IrregularLine</p>
+<IrregularLine title="IrregularLine" subtitle="IrregularLine" height="400px" width="800px" data={data3} smooth={true} />
+
+<p>BasicColumn</p>
+<BasicColumn title="BasicColumn" subtitle="BasicColumn" height="400px" width="800px" data={data2} xAxisName={xAxisName2} smooth={true}/>
+
+<p>StackedColumn</p>
+<StackedColumn title="StackedColumn" subtitle="StackedColumn" height="400px" width="800px" trigger="axis" data={data2} xAxisName={xAxisName2} smooth={true}/>
+
+
 
   </div>
   , document.getElementById('content'));

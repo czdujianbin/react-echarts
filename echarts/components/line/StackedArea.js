@@ -98,10 +98,12 @@ var BasicArea = React.createClass({
             for(var i = 0; i < option.series.length; i++){
                 (option.series[i])["type"] = "line";
                 (option.series[i])["smooth"] = this.props.smooth;
+                (option.series[i])["stack"] = "sum";
                 (option.series[i])["itemStyle"] = {normal: {areaStyle: {type: 'default'}}},
                 option.legend.data.push(option.series[i].name);
                 
             }
+
 
             this.setDataZoom(option);
 

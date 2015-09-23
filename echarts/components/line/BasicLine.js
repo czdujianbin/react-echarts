@@ -71,12 +71,12 @@ var BasicLine = React.createClass({
 
         if(!window.echarts) return;
 
-        //获取基本配置
+        //get configure
         var option = this.props.option;
 
-        if(!option){//没有原生的option设置
+        if(!option){//no this.props.option
 
-            //获取默认设置
+            //get default configure
             option = Tools.clone(Options.LineOption);
 
             option.title.text = this.props.title;
@@ -90,7 +90,7 @@ var BasicLine = React.createClass({
                 option.tooltip.formatter = this.props.tooltipFormatter;
             }
 
-            //组织数据
+            //build data
             option.series = Tools.clone(this.props.data);
             option.xAxis[0].data = this.props.xAxisName;
 

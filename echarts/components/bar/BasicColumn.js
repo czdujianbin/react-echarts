@@ -1,7 +1,7 @@
 /**
- * BasicArea Chart ,using EChart
- * @module BasicArea
- * @author czdujianbin 2015-09-22 17:01:41
+ * BasicColumn Chart ,using EChart
+ * @module BasicColumn
+ * @author czdujianbin 2015-09-23 14:36:41
  * @example
 ```
 var data = [
@@ -18,10 +18,10 @@ var data = [
   var xAxisName = ['周一','周二','周三','周四','周五','周六','周日'];
   
   simple use:
-  <BasicArea id="chart1" data={data} xAxisName={xAxisName}/>
+  <BasicColumn id="chart1" data={data} xAxisName={xAxisName}/>
  
   Advance use:
-  <BasicArea id="test" title="曲线测试" subtitle="这是一个副标题测试" height="800px" width="100%" trigger="item" theme="macarons" data={data} xAxisName={xAxisName} smooth={true}/>
+  <BasicColumn id="test" title="曲线测试" subtitle="这是一个副标题测试" height="800px" width="100%" trigger="item" theme="macarons" data={data} xAxisName={xAxisName} smooth={true}/>
 ```
  */
 
@@ -35,7 +35,7 @@ var Tools = require('../../../utils/tools');
 
 /**
  * Basic Line Chart
- * @class BasicArea
+ * @class BasicColumn
  * @constructor
  * @param {String} height 
  * chart's height
@@ -63,7 +63,7 @@ var Tools = require('../../../utils/tools');
  * configure how many points will be showed in a chart
  * @return {Object} return basic line chart component
  */
-var BasicArea = React.createClass({
+var BasicColumn = React.createClass({
     
     "mixins":[AbstractECharts],
 
@@ -77,7 +77,7 @@ var BasicArea = React.createClass({
         if(!option){//no this.props.option
 
             //get default configure
-            option = Tools.clone(Options.LineOption);
+            option = Tools.clone(Options.BarOption);
 
             option.title.text = this.props.title;
             option.title.subtext = this.props.subtitle;
@@ -96,18 +96,18 @@ var BasicArea = React.createClass({
 
             option.legend.data = [];
             for(var i = 0; i < option.series.length; i++){
-                (option.series[i])["type"] = "line";
+                (option.series[i])["type"] = "bar";
                 (option.series[i])["smooth"] = this.props.smooth;
-                (option.series[i])["itemStyle"] = {normal: {areaStyle: {type: 'default'}}},
                 option.legend.data.push(option.series[i].name);
-                
             }
 
+
+            console.log(JSON.stringify(option));
             this.setDataZoom(option);
 
         }
 
-        //加载图表
+        //load chart
         this.loadChart(option);
     }
 
@@ -115,4 +115,4 @@ var BasicArea = React.createClass({
 
 });
 
-module.exports = BasicArea;
+module.exports = BasicColumn;

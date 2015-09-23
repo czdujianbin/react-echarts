@@ -60,7 +60,7 @@ var AbstractECharts = {
             subtitle:"",
             
             xAxisName:[],
-            smooth:false,
+            smooth:true,
 
             maxPoints:20,
 

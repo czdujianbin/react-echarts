@@ -1,7 +1,7 @@
 /**
- * BasicArea Chart ,using EChart
- * @module BasicArea
- * @author czdujianbin 2015-09-22 17:01:41
+ * IrregularLine Chart ,using EChart
+ * @module IrregularLine
+ * @author czdujianbin 2015-09-23 14:01:41
  * @example
 ```
 var data = [
@@ -18,10 +18,10 @@ var data = [
   var xAxisName = ['周一','周二','周三','周四','周五','周六','周日'];
   
   simple use:
-  <BasicArea id="chart1" data={data} xAxisName={xAxisName}/>
+  <IrregularLine id="chart1" data={data} xAxisName={xAxisName}/>
  
   Advance use:
-  <BasicArea id="test" title="曲线测试" subtitle="这是一个副标题测试" height="800px" width="100%" trigger="item" theme="macarons" data={data} xAxisName={xAxisName} smooth={true}/>
+  <IrregularLine id="test" title="曲线测试" subtitle="这是一个副标题测试" height="800px" width="100%" trigger="item" theme="macarons" data={data} xAxisName={xAxisName} smooth={true}/>
 ```
  */
 
@@ -34,8 +34,8 @@ var Tools = require('../../../utils/tools');
 
 
 /**
- * Basic Line Chart
- * @class BasicArea
+ * Irregular Line Chart
+ * @class IrregularLine
  * @constructor
  * @param {String} height 
  * chart's height
@@ -55,15 +55,13 @@ var Tools = require('../../../utils/tools');
  * subtitle text, '\n' represents a line feed.
  * @param {String} smooth 
  * smoothed line, value(true/false), while smooth is true, lineStyle.type can not be dashed.
- * @param {String} trigger 
- * Type of trigger. Defaults to 'item'.Valid values are: 'item' | 'axis'.
  * @param {String} tooltipFormatter
  * tooltip's formatter: {string} (Template).(Template: a (series name), b(category value), c (value) ) eg : tooltipFormatter="Temperature : <br/>{b}km : {c}°C"
  * @param {Integer} maxPoints
  * configure how many points will be showed in a chart
  * @return {Object} return basic line chart component
  */
-var BasicArea = React.createClass({
+var IrregularLine = React.createClass({
     
     "mixins":[AbstractECharts],
 
@@ -82,25 +80,32 @@ var BasicArea = React.createClass({
             option.title.text = this.props.title;
             option.title.subtext = this.props.subtitle;
 
-            if(this.props.trigger){
-                option.tooltip.trigger = this.props.trigger;
-            }
+            option.tooltip.trigger = "axis";
 
             if(this.props.tooltipFormatter){
                 option.tooltip.formatter = this.props.tooltipFormatter;
             }
 
+            option.tooltip.axisPointer = {
+                show: true,
+                type : 'cross',
+                lineStyle: {
+                    type : 'dashed',
+                    width : 1
+                }
+            };
+
+            option.xAxis[0].type = 'value';
+            delete option.xAxis[0].boundaryGap;
+
             //build data
             option.series = Tools.clone(this.props.data);
-            option.xAxis[0].data = this.props.xAxisName;
 
             option.legend.data = [];
             for(var i = 0; i < option.series.length; i++){
                 (option.series[i])["type"] = "line";
                 (option.series[i])["smooth"] = this.props.smooth;
-                (option.series[i])["itemStyle"] = {normal: {areaStyle: {type: 'default'}}},
                 option.legend.data.push(option.series[i].name);
-                
             }
 
             this.setDataZoom(option);
@@ -115,4 +120,4 @@ var BasicArea = React.createClass({
 
 });
 
-module.exports = BasicArea;
+module.exports = IrregularLine;
