@@ -1,4 +1,4 @@
-var Option = {
+var DefaultOption = {
 
     title:{
         //主标题
@@ -23,29 +23,13 @@ var Option = {
 
             mark:{show:true},
             //dataView:{show:true, readOnly:false},
-            magicType:{show:true, type:['line', 'bar']},
+            
             restore:{show:true},
             saveAsImage:{show:true}
         }
     },
     calculable:false,
-    xAxis :[
-        {
-            type:'category',
-            //X轴坐标名称间隔
-            axisLine : {onZero: false},
-            boundaryGap : false,
-            //X轴坐标名称
-            //data:['测试1','测试2']
-            data:[]
-        }
-    ],
-    yAxis:[
-        {
-            type:'value',
-            axisLine : {onZero: false}
-        }
-    ],
+    
     series:[
         /*{
             name:'邮件营销',
@@ -56,4 +40,4 @@ var Option = {
 }
 
 
-module.exports = Option;
+module.exports = DefaultOption;

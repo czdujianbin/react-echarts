@@ -18,6 +18,18 @@ var AbstractECharts = {
         }
     },
 
+    createRandomItemStyle:function(){
+        return {
+            normal: {
+                color: 'rgb(' + [
+                    Math.round(Math.random() * 160),
+                    Math.round(Math.random() * 160),
+                    Math.round(Math.random() * 160)
+                ].join(',') + ')'
+            }
+        };
+    },
+
     loadChart: function(option){
 
         var myChart = echarts.init(document.getElementById(this.state.id),this.props.theme);
